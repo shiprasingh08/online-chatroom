@@ -18,11 +18,11 @@ export default function LoginPage() {
   };
 
   return (
-    <div className="min-h-screen flex bg-gradient-to-br bg-white">
+    <div className="min-h-screen flex items-center justify-center bg-gradient-to-br bg-white">
       <div className="hidden md:flex flex-1 h-screen">
     
       </div>
-      <div className="flex-1 flex items-center justify-items-center h-screen">
+      <div className="flex-1 flex items-center justify-center h-screen">
         <div className="bg-gray-100 p-8 rounded-lg shadow-lg  w-full max-w-md">
           <h2 className="text-3xl font-bold mb-6 text-center text-gray-800">Login to Chat Room</h2>
           {error && <div className="mb-4 text-red-500 text-center">{error}</div>}
