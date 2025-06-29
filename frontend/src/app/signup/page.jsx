@@ -12,16 +12,30 @@ export default function SignupPage() {
     setSuccess('');
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    // Basic validation
     if (!form.username || !form.email || !form.password) {
       setError('All fields are required.');
       return;
     }
-    // Simulate signup success
-    setSuccess('Signup successful! You can now log in.');
-    setForm({ username: '', email: '', password: '' });
+    setError('');
+    setSuccess('');
+    try {
+      const res = await fetch('http://localhost:3001/api/register', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ username: form.username, email: form.email, password: form.password })
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        setError(data.error || 'Registration failed');
+      } else {
+        setSuccess('Registration successful! Please check your email to verify your account.');
+        setForm({ username: '', email: '', password: '' });
+      }
+    } catch (err) {
+      setError('Network error. Please try again.');
+    }
   };
 
   return (
