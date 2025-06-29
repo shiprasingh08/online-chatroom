@@ -1,3 +1,4 @@
+require('dotenv').config();
 const express = require('express');
 const http = require('http');
 const socketIo = require('socket.io');
@@ -26,14 +27,14 @@ const messages = [];
 const activeUsers = new Map();
 
 // JWT Secret
-const JWT_SECRET = 'your-jwt-secret-key';
+const JWT_SECRET = process.env.JWT_SECRET;
 
 // Email configuration (configure with your email service)
 const transporter = nodemailer.createTransport({
   service: 'gmail', // or your email service
   auth: {
-    user: 'your-email@gmail.com',
-    pass: 'your-app-password'
+    user: process.env.EMAIL_USER,
+    pass: process.env.EMAIL_PASS
   }
 });
 
